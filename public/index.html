@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CCDP — Creative Children Development Programme</title>
+<meta name="description" content="Creative Children Development Programme (CCDP), Pokhara, Nepal — finding under-served children, supporting them in their villages, caring for the most vulnerable and growing a farm to sustain it all.">
+<link rel="icon" href="img/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15120e; --ink2:#221d17; --paper:#f6f0e5; --paper2:#ede4d3; --line:#d9cdb8;
+  --gold:#e3a43a; --gold2:#f2c46d; --teal:#1f8a83; --navy:#1d3557; --muted:#6d6457; --white:#fffdf8;
+  --serif:'Fraunces', Georgia, serif; --sans:'Manrope', system-ui, sans-serif;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1240px,90vw);margin:0 auto}
+.narrow{width:min(760px,88vw);margin:0 auto}
+.eyebrow{font-family:var(--sans);font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.01em}
+h2.section-title{font-size:clamp(2.3rem,5vw,4rem);margin:.6rem 0 1.2rem}
+h2.section-title em,h1 em{font-style:italic;color:var(--gold)}
+.lede{font-size:1.15rem;color:var(--muted);max-width:640px}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.7rem;border-radius:100px;font-weight:700;font-size:.9rem;letter-spacing:.04em;transition:.35s var(--ease)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgba(255,255,255,.5);color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--ink)}
+.btn-dark{background:var(--ink);color:var(--paper)}
+.btn-dark:hover{background:var(--teal)}
+.arrow{transition:transform .35s var(--ease)}
+a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .4s,box-shadow .4s,transform .5s var(--ease);color:#fff}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:84px;width:min(1360px,94vw);margin:0 auto}
+.brand{display:flex;align-items:center;gap:.8rem}
+.brand img{height:46px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.brand b{font-family:var(--serif);font-size:1.55rem;font-weight:600;letter-spacing:.02em;line-height:1}
+.brand small{display:block;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8;margin-top:4px;font-weight:600}
+.menu{display:flex;align-items:center;gap:2rem;font-size:.86rem;font-weight:600;letter-spacing:.04em}
+.menu>a,.menu .dd>button{position:relative;padding:.4rem 0;opacity:.9}
+.menu>a::after,.menu .dd>button::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.35s var(--ease)}
+.menu>a:hover::after,.menu>a.active::after,.menu .dd:hover>button::after,.menu .dd.open>button::after{transform:scaleX(1)}
+.dd{position:relative}
+/* Visibility flips instantly on open (links are Tab-reachable at once) and waits for the fade on close */
+.dd-panel{position:absolute;top:100%;left:-1.2rem;padding-top:14px;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s .3s}
+.dd:hover .dd-panel,.dd.open .dd-panel{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.dd-panel div{background:var(--white);color:var(--ink);border-radius:14px;padding:.6rem;min-width:240px;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.dd-panel a{display:block;padding:.65rem .9rem;border-radius:10px;font-weight:600}
+.dd-panel a:hover{background:var(--paper)}
+.menu .btn{padding:.7rem 1.3rem}
+.nav.solid{background:rgba(246,240,229,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+.nav.solid .brand img{filter:none}
+.nav.hidden{transform:translateY(-100%)}
+.burger{display:none;width:44px;height:44px;position:relative}
+.burger span{position:absolute;left:10px;right:10px;height:2px;background:currentColor;transition:.3s}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:26px}
+.mobile{position:fixed;inset:0;z-index:60;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:0 9vw;opacity:0;visibility:hidden;transition:.4s}
+.mobile.open{opacity:1;visibility:visible}
+.mobile a{font-family:var(--serif);font-size:2rem;padding:.35rem 0;display:block}
+.mobile a.sub{font-family:var(--sans);font-size:1rem;padding:.25rem 0 .25rem 1rem;opacity:.75}
+.mobile .close{position:absolute;top:22px;right:6vw;font-size:2rem}
+@media(max-width:960px){.menu{display:none}.burger{display:block}}
+@media(max-width:600px){.brand small{display:none}.brand img{height:40px}}
+
+/* VIDEO */
+.film{position:relative;height:100vh;height:100svh;background:#000;overflow:hidden}
+.film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.film::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,transparent 22%,transparent 70%,rgba(0,0,0,.6) 100%);pointer-events:none}
+.film-ui{position:absolute;left:0;right:0;bottom:34px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;width:min(1360px,94vw);margin:0 auto;color:#fff}
+.film-ui .ctrl{display:flex;gap:.6rem}
+.chip{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border-radius:100px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);font-size:.8rem;font-weight:600;letter-spacing:.05em}
+.chip:hover{background:rgba(255,255,255,.25)}
+.scrollcue{display:flex;flex-direction:column;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700}
+.scrollcue i{width:1px;height:46px;background:linear-gradient(#fff,transparent);animation:cue 2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.progress{position:absolute;left:0;bottom:0;height:3px;background:var(--gold);z-index:3;width:0}
+
+/* HEADER HERO */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--ink)}
+.hero .bg{position:absolute;inset:-2%;background-size:cover;background-position:center 40%;animation:kb 26s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-1%,-1%)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:
+  linear-gradient(90deg,rgba(14,11,8,.82) 0%,rgba(14,11,8,.45) 45%,rgba(14,11,8,.05) 80%),
+  linear-gradient(0deg,rgba(14,11,8,.85) 0%,transparent 45%)}
+.hero-in{position:relative;z-index:2;width:min(1360px,90vw);margin:0 auto;padding:130px 0 8vh}
+.hero h1{font-size:clamp(2.8rem,6.6vw,6.8rem);font-weight:300;line-height:.98;letter-spacing:-.03em;max-width:13ch}
+.hero h1 em{font-weight:300}
+.hero .tag{margin-top:2rem;max-width:560px;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.45;color:rgba(255,255,255,.92);padding-left:1.4rem;border-left:2px solid var(--gold)}
+.plan{display:flex;flex-wrap:wrap;gap:0;margin-top:3rem;border-top:1px solid rgba(255,255,255,.22);max-width:900px}
+.plan div{flex:1 1 180px;padding:1.2rem 1.4rem 0 0}
+@media(max-width:700px){.plan{display:grid;grid-template-columns:1fr 1fr;margin-top:2rem}.plan div{padding:1rem 1rem 0 0}.plan b{font-size:1.15rem}.hero .tag{font-size:1.1rem}}
+.plan b{display:block;font-family:var(--serif);font-size:1.4rem;font-weight:400}
+.plan span{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.5;display:block;margin-top:.2rem}
+.plan small{font-size:.66rem;letter-spacing:.25em;color:var(--gold);font-weight:700}
+/* Must come after the base .film and .hero rules, or their height and background-position win */
+@media(max-aspect-ratio:1/1){.film video{object-fit:contain}.film{width:100%;height:auto;aspect-ratio:9/12;min-height:70svh}.hero .bg{background-position:30% 40%}}
+
+/* SECTIONS */
+section{position:relative}
+.pad{padding:clamp(5rem,11vw,9rem) 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3.5rem}
+
+/* PROJECT CARDS */
+.projects{display:grid;grid-template-columns:repeat(12,1fr);gap:1.4rem}
+.pcard{position:relative;overflow:hidden;border-radius:18px;color:#fff;background:var(--ink);display:block;isolation:isolate}
+.pcard:nth-child(1){grid-column:span 7;aspect-ratio:16/11}
+.pcard:nth-child(2){grid-column:span 5;aspect-ratio:auto}
+.pcard:nth-child(3){grid-column:span 5;aspect-ratio:auto}
+.pcard:nth-child(4){grid-column:span 7;aspect-ratio:16/11}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .6s;z-index:-2}
+.pcard::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(10,8,6,.88) 0%,rgba(10,8,6,.15) 55%,rgba(10,8,6,0) 100%)}
+.pcard:hover img{transform:scale(1.06)}
+.pcard .pc-in{position:absolute;left:0;right:0;bottom:0;padding:2.2rem}
+.pcard .num{font-family:var(--serif);font-style:italic;color:var(--gold2);font-size:1rem}
+.pcard h3{font-size:clamp(1.7rem,3vw,2.6rem);margin:.3rem 0 .5rem}
+.pcard p{font-size:.95rem;color:rgba(255,255,255,.8);max-width:440px;line-height:1.55}
+.pcard .more{margin-top:1.1rem;display:inline-flex;gap:.5rem;font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2)}
+@media(max-width:860px){.pcard:nth-child(n){grid-column:span 12;aspect-ratio:4/3.4}}
+
+/* STORIES */
+.stories-bg{background:var(--paper2)}
+.stories{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.scard{display:flex;flex-direction:column;background:var(--white);border-radius:18px;overflow:hidden;transition:.5s var(--ease);box-shadow:0 1px 0 var(--line)}
+.scard:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(40,25,10,.35)}
+.scard .ph{aspect-ratio:4/4.3;overflow:hidden}
+.scard:first-child .ph{aspect-ratio:4/4.3}
+.scard .ph img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform 1.2s var(--ease)}
+.scard:hover .ph img{transform:scale(1.05)}
+.scard .tx{padding:1.6rem 1.7rem 1.9rem}
+.scard .kind{font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--teal)}
+.scard h3{font-size:1.75rem;margin:.5rem 0 .6rem}
+.scard p{color:var(--muted);font-size:.95rem;line-height:1.6}
+.scard .more{margin-top:1rem;font-weight:700;font-size:.82rem;display:inline-flex;gap:.4rem;color:var(--ink)}
+@media(max-width:960px){.stories{grid-template-columns:1fr}.scard .ph{aspect-ratio:16/10!important}}
+
+/* DONATE */
+.donate{background:var(--ink);color:var(--paper);overflow:hidden}
+.donate .bgimg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.22;filter:grayscale(.2)}
+.donate::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--ink) 0%,rgba(21,18,14,.6) 40%,var(--ink) 100%);z-index:1}
+.donate .wrap{position:relative;z-index:2}
+.donate .lede{color:rgba(246,240,229,.75)}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;margin-top:3.2rem}
+.dcard{background:rgba(255,253,248,.06);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:2.4rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.dcard h3{font-size:2rem;margin:.3rem 0 .8rem}
+.dcard p{color:rgba(246,240,229,.72);font-size:.95rem}
+.amounts{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.6rem 0}
+.amounts button{padding:.7rem 1.2rem;border-radius:100px;border:1px solid rgba(255,255,255,.3);font-weight:700;font-size:.9rem;transition:.25s}
+.amounts button.on,.amounts button:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.paypal{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;padding:1.1rem;border-radius:14px;background:#ffc439;color:#003087;font-weight:800;font-size:1.05rem;transition:.25s}
+.paypal:hover{filter:brightness(1.05);transform:translateY(-2px)}
+.bank{margin-top:1.4rem;border-top:1px solid rgba(255,255,255,.14)}
+.bank div{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.92rem}
+.bank span{color:rgba(246,240,229,.6);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.bank b{font-weight:600;text-align:right;display:flex;align-items:center;gap:.6rem}
+.copy{font-size:.68rem;padding:.3rem .6rem;border:1px solid rgba(255,255,255,.25);border-radius:6px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.copy:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.note{font-size:.8rem;color:rgba(246,240,229,.5);margin-top:1rem;font-style:italic}
+.impact{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.impact div{border-top:1px solid rgba(255,255,255,.2);padding-top:1rem}
+.impact b{font-family:var(--serif);font-size:1.3rem;font-weight:400;display:block;color:var(--gold2)}
+.impact span{font-size:.85rem;color:rgba(246,240,229,.7)}
+@media(max-width:860px){.dgrid{grid-template-columns:1fr}.impact{grid-template-columns:1fr 1fr}}
+
+/* FOOTER */
+footer{background:#0e0c09;color:rgba(246,240,229,.75);padding:5rem 0 2rem;font-size:.92rem}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.4fr;gap:3rem}
+footer h4{font-family:var(--sans);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:1.2rem}
+footer .flogo{background:var(--paper);border-radius:16px;padding:1rem;width:150px;margin-bottom:1.4rem}
+footer a:hover{color:#fff}
+footer li{list-style:none;margin:.45rem 0}
+.socials{display:flex;gap:.7rem;margin-top:1.4rem}
+.socials a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;transition:.25s}
+.socials a:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.socials svg{width:18px;height:18px;fill:currentColor}
+.map{display:block;position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:#1b2a2a}
+.map svg{width:100%;height:100%;display:block}
+.map .pin-label{position:absolute;left:1rem;bottom:1rem;right:1rem;background:rgba(14,12,9,.85);border-radius:10px;padding:.7rem .9rem;font-size:.8rem;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.map:hover .pin-label{background:var(--gold);color:var(--ink)}
+.fbottom{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:rgba(246,240,229,.45)}
+@media(max-width:960px){.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
+
+/* PAGE HERO */
+.phero{position:relative;height:88vh;min-height:560px;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:var(--ink)}
+.phero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:kb 30s ease-in-out infinite alternate}
+.phero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(12,10,7,.9) 0%,rgba(12,10,7,.25) 50%,rgba(12,10,7,.35) 100%)}
+.phero .in{position:relative;z-index:2;width:min(1240px,90vw);margin:0 auto;padding-bottom:8vh}
+.phero h1{font-size:clamp(2.8rem,7vw,6.4rem);font-weight:300;max-width:14ch;letter-spacing:-.03em}
+.phero p{max-width:600px;margin-top:1.2rem;font-size:1.15rem;color:rgba(255,255,255,.85)}
+.crumbs{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;margin-bottom:1.2rem;color:rgba(255,255,255,.75)}
+.crumbs a:hover{color:var(--gold2)}
+.phero.short{height:62vh;min-height:440px}
+
+.prose p{margin:0 0 1.35rem;font-size:1.12rem;line-height:1.85;color:#2c261f}
+.prose p.drop::first-letter{font-family:var(--serif);float:left;font-size:4.6rem;line-height:.82;padding:.45rem .6rem 0 0;color:var(--teal)}
+.prose h3{font-size:2rem;margin:3rem 0 1rem}
+.prose blockquote{margin:2.4rem 0;padding:0 0 0 1.6rem;border-left:3px solid var(--gold);font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1.45;color:var(--ink)}
+.prose blockquote cite{display:block;font-family:var(--sans);font-style:normal;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.8rem;font-weight:700}
+
+.prose figure{margin:2.4rem 0}.prose figure img{width:100%;border-radius:16px}.prose figure.port img{max-width:460px;margin:0 auto}.prose figcaption{font-size:.85rem;color:var(--muted);text-align:center;margin-top:.7rem;font-style:italic}
+.bigquote{background:var(--ink);color:var(--paper);text-align:center;padding:clamp(5rem,10vw,8rem) 0}
+.bigquote q{display:block;font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(1.8rem,4vw,3.3rem);line-height:1.25;max-width:22ch;margin:0 auto;quotes:"“" "”"}
+.bigquote cite{display:block;margin-top:1.8rem;font-style:normal;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700}
+
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:3rem}
+.feature{background:var(--white);border-radius:18px;padding:1.8rem;box-shadow:0 1px 0 var(--line)}
+.feature .ic{width:46px;height:46px;border-radius:12px;background:var(--paper2);display:grid;place-items:center;font-size:1.3rem;margin-bottom:1rem}
+.feature h4{font-size:1.35rem;margin-bottom:.4rem}
+.feature p{font-size:.93rem;color:var(--muted);line-height:1.6}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);align-items:center}
+.split img{border-radius:18px;width:100%;aspect-ratio:4/5;object-fit:cover}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+
+/* masonry gallery */
+.masonry{columns:3 320px;column-gap:1.1rem}
+.masonry figure{break-inside:avoid;margin-bottom:1.1rem;position:relative;border-radius:14px;overflow:hidden;cursor:zoom-in;background:var(--paper2)}
+.masonry img{width:100%;height:auto;transition:transform 1s var(--ease)}
+.masonry figure:hover img{transform:scale(1.04)}
+.masonry figcaption{position:absolute;inset:auto 0 0 0;padding:2.4rem 1.2rem 1rem;background:linear-gradient(0deg,rgba(10,8,6,.85),transparent);color:#fff;opacity:0;transform:translateY(8px);transition:.4s var(--ease)}
+.masonry figure:hover figcaption,.masonry figure:focus-visible figcaption{opacity:1;transform:none}
+.masonry figure:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.masonry figcaption b{font-family:var(--serif);font-weight:400;font-size:1.2rem;display:block}
+.masonry figcaption span{font-size:.82rem;opacity:.85;line-height:1.45;display:block}
+.gal-page .masonry figcaption{position:static;opacity:1;transform:none;background:var(--white);color:var(--ink);padding:1rem 1.2rem 1.2rem}
+.gal-page .masonry figcaption span{color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.4rem}
+.filters button{padding:.6rem 1.2rem;border-radius:100px;border:1px solid var(--line);font-weight:600;font-size:.86rem;transition:.25s}
+.filters button.on,.filters button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:80;background:rgba(10,8,6,.96);display:none;align-items:center;justify-content:center;flex-direction:column;padding:4vh 4vw}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:78vh;border-radius:8px;object-fit:contain}
+.lb .cap{color:#fff;text-align:center;margin-top:1.2rem;max-width:640px}
+.lb .cap b{font-family:var(--serif);font-weight:400;font-size:1.5rem;display:block}
+.lb .cap span{color:rgba(255,255,255,.7);font-size:.92rem}
+.lb .x,.lb .pv,.lb .nx{position:absolute;color:#fff;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);font-size:1.4rem;display:grid;place-items:center}
+.lb .x{top:20px;right:20px}.lb .pv{left:20px;top:50%}.lb .nx{right:20px;top:50%}
+.lb button:hover{background:var(--gold);color:var(--ink)}
+
+/* board */
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.6rem 1.2rem}
+.member{text-align:center}
+.member .ph{aspect-ratio:4/4.8;border-radius:16px;overflow:hidden;background:var(--paper2);margin-bottom:.9rem}
+.member img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:saturate(.92);transition:.6s var(--ease)}
+.member:hover img{transform:scale(1.05);filter:none}
+.member b{font-family:var(--serif);font-weight:500;font-size:1.15rem;display:block;line-height:1.25}
+.member span{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:700}
+.board-group{margin:3rem 0 1.4rem;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:1rem}
+.board-group::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.next{display:grid;grid-template-columns:1fr 1fr;min-height:340px}
+.next a{position:relative;overflow:hidden;color:#fff;display:flex;align-items:flex-end;padding:2.4rem;isolation:isolate}
+.next img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease)}
+.next a::after{content:"";position:absolute;inset:0;background:rgba(12,10,7,.55);z-index:-1;transition:.4s}
+.next a:hover img{transform:scale(1.06)}.next a:hover::after{background:rgba(12,10,7,.35)}
+.next small{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;color:var(--gold2)}
+.next h3{font-size:2.2rem}
+@media(max-width:700px){.next{grid-template-columns:1fr}}
+
+.cta-band{background:var(--teal);color:#fff;border-radius:24px;padding:clamp(2.4rem,5vw,4rem);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.cta-band h3{font-size:clamp(1.8rem,3.4vw,2.8rem);max-width:20ch}
+
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);visibility:hidden;background:var(--gold);color:var(--ink);padding:.8rem 1.4rem;border-radius:100px;font-weight:700;font-size:.88rem;z-index:90;transition:.4s var(--ease)}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+.draftnote{background:#fff7e6;border:1px dashed var(--gold);border-radius:12px;padding:.8rem 1rem;font-size:.85rem;color:#7a5a1d;margin-bottom:2rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#home"><img src="img/logo-mark.png" alt="CCDP logo"><div><b>CCDP</b><small>Creative Children Development Programme</small></div></a>
+    <div class="menu">
+      <a href="#home" data-r="home">Home</a>
+      <a href="#about" data-r="about">About Us</a>
+      <div class="dd"><button aria-expanded="false" aria-controls="dd-projects">Our Projects <span aria-hidden="true">▾</span></button>
+        <div class="dd-panel" id="dd-projects"><div>
+          <a href="#odahare-school">Odahare Village School</a>
+          <a href="#scholarship">Scholarship Programme</a>
+          <a href="#children-home">Children Home</a>
+          <a href="#farm">The Farm</a>
+        </div></div>
+      </div>
+      <a href="#stories" data-r="stories">Stories</a>
+      <a href="#gallery" data-r="gallery">Gallery</a>
+      <a href="#contact" data-r="contact">Contact</a>
+      <a href="#donate" class="btn btn-gold">Donate</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile" id="mobile">
+  <button class="close" id="mclose" aria-label="Close menu">×</button>
+  <a href="#home">Home</a>
+  <a href="#about">About Us</a>
+  <a href="#projects">Our Projects</a>
+  <a class="sub" href="#odahare-school">Odahare Village School</a>
+  <a class="sub" href="#scholarship">Scholarship Programme</a>
+  <a class="sub" href="#children-home">Children Home</a>
+  <a class="sub" href="#farm">The Farm</a>
+  <a href="#stories">Stories</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#donate" style="color:var(--gold)">Donate</a>
+</div>
+
+<main id="app"></main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="flogo"><img src="img/logo.png" alt="Creative Children Development Programme"></div>
+        <p>Creative Children Development Programme — finding, supporting and caring for under-served children in and around Pokhara, Nepal.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.3H7.6V14h2.8v8h3.1z"/></svg></a>
+          <a href="https://www.instagram.com/" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 8c0-1.6-.4-3-1.6-4.2S17.6 2.1 16 2.1C14.3 2 9.7 2 8 2.1 6.4 2.1 5 2.5 3.8 3.7S2.1 6.4 2.1 8C2 9.7 2 14.3 2.1 16c0 1.6.4 3 1.6 4.2s2.6 1.6 4.2 1.6c1.7.1 6.3.1 8 0 1.6 0 3-.4 4.2-1.6s1.6-2.6 1.6-4.2c.1-1.7.1-6.3 0-8z"/></svg></a>
+          <a href="https://www.youtube.com/" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg></a>
+          <a href="https://wa.me/" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.8-.5zM12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#odahare-school">Odahare Village School</a></li>
+          <li><a href="#scholarship">Scholarship Programme</a></li>
+          <li><a href="#children-home">Children Home</a></li>
+          <li><a href="#farm">The Farm</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#donate">Donate</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Pokhara-15, Dhungesanghu<br>Kaski, Gandaki Province<br>Nepal</li>
+          <li style="margin-top:1rem"><a href="mailto:ccdpnepal@gmail.com">ccdpnepal@gmail.com</a></li>
+          <li><a href="tel:+9779800000000">+977 98XX-XXXXXX</a></li>
+          <li style="margin-top:1rem;font-size:.8rem;opacity:.7">Reg. No. 2973/069<br>SWC Affiliation No. 37106</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Find us</h4>
+        <a class="map" href="https://www.google.com/maps/search/?api=1&query=Dhungesanghu%2C+Pokhara-15%2C+Nepal" aria-label="Open location in Google Maps">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="300" fill="#1c2b29"/>
+            <path d="M-10 210 C 60 180, 110 240, 190 200 S 330 150, 420 190" stroke="#2c4a46" stroke-width="26" fill="none"/>
+            <path d="M40 -10 L 120 120 L 140 310" stroke="#3a3428" stroke-width="7" fill="none"/>
+            <path d="M-10 90 L 180 130 L 420 70" stroke="#3a3428" stroke-width="5" fill="none"/>
+            <path d="M260 -10 L 230 140 L 300 310" stroke="#3a3428" stroke-width="4" fill="none"/>
+            <path d="M180 130 L 230 140" stroke="#4a4232" stroke-width="3" fill="none"/>
+            <g fill="#253634"><rect x="290" y="210" width="60" height="40" rx="6"/><rect x="40" y="130" width="50" height="34" rx="6"/><rect x="300" y="90" width="70" height="40" rx="6"/><rect x="150" y="30" width="60" height="40" rx="6"/></g>
+            <circle cx="205" cy="135" r="26" fill="#e3a43a" opacity=".18"><animate attributeName="r" values="14;34;14" dur="2.8s" repeatCount="indefinite"/></circle>
+            <path d="M205 100 c-14 0 -22 10 -22 22 c0 16 22 36 22 36 s22 -20 22 -36 c0 -12 -8 -22 -22 -22z" fill="#e3a43a"/>
+            <circle cx="205" cy="122" r="7" fill="#1c2b29"/>
+          </svg>
+          <div class="pin-label"><span>CCDP · Dhungesanghu, Pokhara-15</span><span>Open map ↗</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="fbottom"><span>© <span id="yr"></span> Creative Children Development Programme (CCDP), Nepal</span><span>सृजनशील बालविकास कार्यक्रम</span></div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="x" id="lbx" aria-label="Close">×</button>
+  <button class="pv" id="lbp" aria-label="Previous">‹</button>
+  <button class="nx" id="lbn" aria-label="Next">›</button>
+  <img id="lbimg" alt="">
+  <div class="cap"><b id="lbt"></b><span id="lbc"></span></div>
+</div>
+<div class="toast" id="toast">Copied</div>
+
+<script>
+/* ============ DATA ============ */
+const PHOTOS = [
+ // Odahare Village School
+ {f:'odahare-village-school-featured.jpg',p:'odahare-school',t:'Lessons beneath the old tree',c:'In Odahare the classroom often moves outdoors, where children write and draw in the shade of the village’s great tree.'},
+ {f:'odahare-village-school-1.jpg',p:'odahare-school',t:'A quiet moment',c:'A young artist pauses from her drawing at the foot of the tree.'},
+ {f:'odahare-village-school-2.jpg',p:'odahare-school',t:'Lost in the page',c:'Pencil, paper and a whole afternoon to imagine.'},
+ {f:'odahare-village-school-3.jpg',p:'odahare-school',t:'Colour coming to life',c:'Every drawing is a small act of creativity — and of confidence.'},
+ {f:'odahare-village-school-4.jpg',p:'odahare-school',t:'Families at the heart',c:'We believe children thrive best at home, with the people who love them.'},
+ {f:'odahare-village-school-5.jpg',p:'odahare-school',t:'A shy smile, a bright mind',c:'Between sketches, a student looks up with a grin.'},
+ {f:'odahare-village-school-6.jpg',p:'odahare-school',t:'Art in the open air',c:'Village school students drawing together, side by side in the shade.'},
+ // Scholarship
+ {f:'scholarship-featured.jpg',p:'scholarship',t:'Books in hand',c:'A scholarship student holds the books that keep him in the classroom.'},
+ {f:'scholarship-1.jpg',p:'scholarship',t:'A new school bag',c:'A simple gift of school supplies can mean a whole new year of learning.'},
+ {f:'scholarship-2.jpg',p:'scholarship',t:'Delivered to the doorstep',c:'Educational materials handed over at a student’s home.'},
+ {f:'scholarship-3.jpg',p:'scholarship',t:'Ready for the term ahead',c:'Packed, prepared and proud.'},
+ {f:'scholarship-4.jpg',p:'scholarship',t:'Friends for life',c:'Three scholarship students sharing a laugh outside home.'},
+ {f:'scholarship-5.jpg',p:'scholarship',t:'Side by side',c:'Siblings who are both able to stay in school.'},
+ {f:'scholarship-6.jpg',p:'scholarship',t:'Thumbs up for the future',c:'Confidence grows when school is no longer in question.'},
+ {f:'scholarship-7.jpg',p:'scholarship',t:'Mother and daughter',c:'Supporting a child means supporting the whole family.'},
+ {f:'scholarship-8.jpg',p:'scholarship',t:'Evening study',c:'Homework by window light, at home where she belongs.'},
+ {f:'scholarship-9.jpg',p:'scholarship',t:'Through the window',c:'A glimpse of everyday learning in a village home.'},
+ {f:'scholarship-10.jpg',p:'scholarship',t:'Where support begins',c:'A mother and son at home — the heart of our in-village approach.'},
+ // Children Home
+ {f:'children-home-featured.jpg',p:'children-home',t:'Morning routine',c:'Hair braided and uniforms on — getting ready for school at the Children Home.'},
+ {f:'children-home-1.jpg',p:'children-home',t:'Games with Aunty',c:'Afternoons on the veranda, playing together with a house mother.'},
+ {f:'children-home-2.jpg',p:'children-home',t:'Carrom afternoon',c:'A favourite game, a full board and plenty of friendly rivalry.'},
+ {f:'children-home-3.jpg',p:'children-home',t:'Your turn!',c:'Big smiles around the carrom board.'},
+ {f:'children-home-4.jpg',p:'children-home',t:'Football in the courtyard',c:'Open space to run, play and simply be children.'},
+ {f:'children-home-5.jpg',p:'children-home',t:'Among the maize',c:'The boys in front of the Children Home’s own kitchen garden.'},
+ {f:'children-home-6.jpg',p:'children-home',t:'Off to school',c:'Bags packed, hands waving — another school day begins.'},
+ {f:'children-home-7.jpg',p:'children-home',t:'Brothers in blue',c:'Uniforms pressed and ready.'},
+ {f:'children-home-8.jpg',p:'children-home',t:'Mealtime',c:'Warm, nourishing meals shared around one table.'},
+ {f:'children-home-9.jpg',p:'children-home',t:'Dal bhat together',c:'Home-cooked food, eaten as a family.'},
+ // Farm
+ {f:'farm-featured.jpg',p:'farm',t:'Where the future grows',c:'Banana groves on CCDP’s young farm in Odahare, looking out over the hills.'},
+];
+const BOARD = [
+ ['ram-prasad-sharma','Ram Prasad Sharma','Chairman','e'],
+ ['narayan-prasad-shrestha','Narayan Prasad Shrestha','Vice-Chairman','e'],
+ ['binod-nepali','Binod Nepali','Secretary','e'],
+ ['bir-bahadur-nepali','Bir Bahadur Nepali','Treasurer','e'],
+ ['gom-prasad-chudali','Gom Prasad Chudali','Member','e'],
+ ['adipti-pantha','Adipti Pantha','Member','e'],
+ ['khem-bahadur-kc','Khem Bahadur KC','Member','e'],
+ ['ganga-gurung','Ganga Gurung','Member','e'],
+ ['goma-pradhan','Goma Pradhan','Member','e'],
+ ['grishma-keshav-parajuli','Grishma Keshav Parajuli','Advisor','a'],
+ ['purnalal-kayestha','Purnalal Kayestha','Advisor','a'],
+ ['dhanu-giri','Dhanu Giri','Advisor','a'],
+];
+const PROJECTS = {
+ 'odahare-school':{
+   n:'01',title:'Odahare Village School',img:'odahare-village-school-featured.jpg',
+   short:'Learning, art and play under the village tree — so children can grow up at home.',
+   hero:'A school rooted in the village — so children never have to leave home to learn.',
+   intro:[
+    'At CCDP we hold one conviction above all: <em>children are best cared for in their own homes</em>, surrounded by the families and communities who love them. So rather than taking children away to find opportunity, we bring opportunity to them.',
+    'In Odahare village we created a small village school. Children from local families receive educational support — books, materials and steady encouragement — along with the creative activities that make learning joyful. On many days the classroom moves outdoors, and the children gather to draw and paint in the shade of the great tree at the centre of the village.',
+    'It is simple, it is local, and it works: children stay with their parents, families stay together, and a whole village watches its young ones grow.'
+   ],
+   quote:['One child, one teacher, one book, one pen can change the world.','Malala Yousafzai'],
+   feats:[['✎','Educational support','Books, stationery and learning materials for every child in the village school.'],['🎨','Creative activities','Art, drawing and play — often beneath the village tree — to build imagination and confidence.'],['⌂','Children stay home','Support reaches children where they live, so families remain together.'],['❦','Community-rooted','Parents and neighbours are partners in every child’s progress.']]
+ },
+ 'scholarship':{
+   n:'02',title:'Scholarship Programme',img:'scholarship-featured.jpg',
+   short:'Continuous educational support that keeps children in school, year after year.',
+   hero:'Keeping children in the classroom — one school year at a time.',
+   intro:[
+    'CCDP begins by looking carefully at our own area — seeking out children and families who are struggling. For many, a little help goes a long way. Where a child simply needs economic support to stay in school, we provide <em>educational materials and some financial support for the family</em>.',
+    'Many of these children have received support continuously, year after year, and today they are part of our Scholarship Programme. School bags, books, uniforms and fees mean a child no longer has to choose between learning and helping the family survive.',
+    'Our founder knows this road personally. As a boy, poverty kept Shankar out of school — until someone helped him go. Every scholarship is our way of passing that gift on.'
+   ],
+   quote:['Education is the most powerful weapon which you can use to change the world.','Nelson Mandela'],
+   feats:[['🎒','School materials','Bags, books, stationery and uniforms at the start of each school year.'],['♡','Family support','Modest financial help so families can keep children in school.'],['↻','Continuous care','Long-term support through the school years, not a one-off gift.'],['☼','Personal follow-up','We visit students at home and walk alongside them as they grow.']]
+ },
+ 'children-home':{
+   n:'03',title:'Children Home',img:'children-home-featured.jpg',
+   short:'A safe, loving home for children who have no family to care for them.',
+   hero:'For children with nowhere else to go — a real home.',
+   intro:[
+    'Some children have no home to stay in, and no family to care for them. For them, support in the village is not enough. These children are welcomed into the CCDP Children Home in Dhungesanghu, Pokhara-15.',
+    'The Children Home is designed to give them <em>everything a childhood should have</em>: a library and a separate study hall for homework, open space for football and games, music, table tennis, a local kitchen garden where the children help grow vegetables and maize, and warm meals shared around one table.',
+    'Above all, it is a family. House mothers braid hair before school, celebrate small victories, and make sure every child knows they belong.'
+   ],
+   quote:['It is easier to build strong children than to repair broken men.','Frederick Douglass'],
+   feats:[['📚','Library & study hall','A dedicated library and a separate, quiet hall for study.'],['⚽','Space to play','Open ground for football, games, carrom and table tennis.'],['♫','Music','Instruments and song, because joy is part of growing up.'],['❀','Kitchen garden','Children help grow fresh food — and learn where it comes from.']]
+ },
+ 'farm':{
+   n:'04',title:'The Farm',img:'farm-featured.jpg',
+   short:'A newly-started farm in Odahare, growing a sustainable future for every project.',
+   hero:'Planting today the harvest that will sustain tomorrow.',
+   intro:[
+    'Everything CCDP does — the village school, the scholarships, the Children Home — depends today on the generosity of friends in Nepal and around the world. We are deeply grateful. But we also dream of a future where this work can <em>sustain itself</em>.',
+    'That is why we have started a farm on land in Odahare village. Banana groves are already taking root on the hillside, and our plan is to grow income-generating farming that supports CCDP’s projects and creates work and opportunity for the villagers around it.',
+    'The farm has only just begun, and this is where we need support the most. In time we hope it will also be home to a small children’s home and, one day, a school — so that Odahare can become a complete, self-sustaining centre of care.'
+   ],
+   quote:['The best time to plant a tree was twenty years ago. The second best time is now.','Proverb'],
+   feats:[['🌱','Just started','Young banana groves and the first plots are in the ground.'],['⟳','Self-sustaining','Farm income will help fund children’s education and care.'],['☺','Village livelihoods','Farming work and produce that benefit Odahare’s families.'],['⌂','Room to grow','Future plans include a six-room children home and a school.']]
+ }
+};
+const PORDER=['odahare-school','scholarship','children-home','farm'];
+const STORIES = {
+ 'story-shankar':{kind:'Founder’s story',title:'Shankar’s Story',img:'shankar-portrait.jpg',short:'From a childhood of poverty and illness to “father” of hundreds of children — the dream that became CCDP.'},
+ 'story-shristhi':{kind:'A student’s journey',title:'Shristhi’s Story',img:'shristhi.jpg',short:'How steady support through school helped one girl step confidently toward her future.'},
+ 'story-agm':{kind:'News · September 2026',title:'14th AGM & New Board',img:'agm-featured-image.jpg',short:'Members gathered at the Children Home for our 14th Annual General Assembly and introduced the executive committee.'}
+};
+
+/* ============ HELPERS ============ */
+const $=s=>document.querySelector(s);
+const app=$('#app');
+const img=f=>'img/'+f;
+let lbList=[],lbI=0,lbReturnFocus=null;
+
+function masonry(list){
+  return `<div class="masonry">${list.map((p,i)=>`<figure class="reveal" data-i="${i}" tabindex="0" role="button" aria-label="View larger: ${p.t}"><img loading="lazy" src="${img(p.f)}" alt="${p.t}"><figcaption><b>${p.t}</b><span>${p.c}</span></figcaption></figure>`).join('')}</div>`;
+}
+function bindMasonry(list){
+  document.querySelectorAll('.masonry figure').forEach(fg=>{
+    fg.onclick=()=>openLb(list,+fg.dataset.i);
+    fg.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fg.click()}};
+  });
+}
+function openLb(list,i){lbList=list;lbI=i;showLb();lbReturnFocus=document.activeElement;$('#lb').classList.add('open');$('#lbx').focus()}
+function closeLb(){$('#lb').classList.remove('open');lbReturnFocus?.focus();lbReturnFocus=null}
+function showLb(){const p=lbList[lbI];$('#lbimg').src=img(p.f);$('#lbimg').alt=p.t;$('#lbt').textContent=p.t;$('#lbc').textContent=p.c}
+// Keep Tab cycling through the viewer's buttons so focus can't slip behind the modal
+function trapLbFocus(e){
+  const btns=[...document.querySelectorAll('#lb button')];
+  const i=btns.indexOf(document.activeElement);
+  e.preventDefault();
+  btns[(i+(e.shiftKey?-1:1)+btns.length)%btns.length].focus();
+}
+$('#lbx').onclick=closeLb;
+$('#lbp').onclick=()=>{lbI=(lbI-1+lbList.length)%lbList.length;showLb()};
+$('#lbn').onclick=()=>{lbI=(lbI+1)%lbList.length;showLb()};
+$('#lb').onclick=e=>{if(e.target.id==='lb')closeLb()};
+document.addEventListener('keydown',e=>{if(!$('#lb').classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='Tab')trapLbFocus(e);if(e.key==='ArrowLeft')$('#lbp').click();if(e.key==='ArrowRight')$('#lbn').click()});
+
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}
+
+/* ============ SECTIONS ============ */
+const projectCards=()=>`<div class="projects">${PORDER.map(k=>{const p=PROJECTS[k];return `
+  <a class="pcard reveal" href="#${k}"><img src="${img(p.img)}" alt="${p.title}" loading="lazy">
+   <div class="pc-in"><div class="num">${p.n} —</div><h3>${p.title}</h3><p>${p.short}</p><span class="more">Explore <span class="arrow">→</span></span></div></a>`}).join('')}</div>`;
+
+const storyCards=()=>`<div class="stories">${Object.entries(STORIES).map(([k,s])=>`
+  <a class="scard reveal" href="#${k}"><div class="ph"><img src="${img(s.img)}" alt="${s.title}" loading="lazy"></div>
+  <div class="tx"><div class="kind">${s.kind}</div><h3>${s.title}</h3><p>${s.short}</p><span class="more">Read the story <span class="arrow">→</span></span></div></a>`).join('')}</div>`;
+
+const donateSection=()=>`
+<section class="donate pad" id="donate-sec">
+  <div class="bgimg" style="background-image:url(${img('scholarship-5.jpg')})"></div>
+  <div class="wrap">
+    <div class="eyebrow reveal">Give hope</div>
+    <h2 class="section-title reveal" style="max-width:15ch">Your gift keeps a child <em>in school, at home, and loved.</em></h2>
+    <p class="lede reveal">Every contribution — large or small — goes directly to children’s education, daily care at the Children Home, and the farm that will sustain this work for years to come.</p>
+    <div class="impact reveal">
+      <div><b>School supplies</b><span>Bags, books and uniforms for the new term</span></div>
+      <div><b>Scholarships</b><span>Fees and family support to keep children learning</span></div>
+      <div><b>Daily care</b><span>Meals, study and safety at the Children Home</span></div>
+      <div><b>The farm</b><span>Seeds, tools and land for a self-sustaining future</span></div>
+    </div>
+    <div class="dgrid">
+      <div class="dcard reveal">
+        <div class="eyebrow">Fast & secure</div>
+        <h3>Give with PayPal</h3>
+        <p>Use any card or your PayPal balance. Choose an amount, then complete your gift on PayPal.</p>
+        <div class="amounts" id="amts">${[25,50,100,250,500].map((a,i)=>`<button data-a="${a}" class="${i==1?'on':''}">$${a}</button>`).join('')}<button data-a="">Other</button></div>
+        <a class="paypal" id="ppbtn" href="https://www.paypal.com/donate/?business=ccdpnepal%40gmail.com&currency_code=USD&amount=50">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#003087"><path d="M7.1 21.5H3.6c-.3 0-.5-.3-.5-.6L5.9 3c.1-.4.4-.6.8-.6h6.6c3.4 0 5.6 1.8 5 5.1-.7 3.9-3.3 5.6-6.8 5.6H9.4c-.4 0-.7.3-.8.7l-1 6.3c-.1.4-.3.6-.5.6v.8z"/></svg>
+          Donate <span id="ppamt">$50</span> with PayPal</a>
+        <p class="note">PayPal account to be confirmed — currently set up for ccdpnepal@gmail.com.</p>
+      </div>
+      <div class="dcard reveal">
+        <div class="eyebrow">International transfer</div>
+        <h3>Bank transfer (SWIFT)</h3>
+        <p>For larger gifts, churches and partner organisations, please transfer directly to our account in Nepal.</p>
+        <div class="bank">
+          <div><span>Account name</span><b>Creative Children Development Programme <button class="copy" data-c="Creative Children Development Programme">Copy</button></b></div>
+          <div><span>Bank</span><b>[Bank name], Pokhara Branch</b></div>
+          <div><span>Account no.</span><b>XXXX XXXX XXXX <button class="copy" data-c="XXXXXXXXXXXX">Copy</button></b></div>
+          <div><span>SWIFT / BIC</span><b>XXXXNPKA <button class="copy" data-c="XXXXNPKA">Copy</button></b></div>
+          <div><span>Bank address</span><b>Pokhara, Kaski, Nepal</b></div>
+        </div>
+        <p class="note">Bank details are placeholders and will be updated. After transferring, please email <b>ccdpnepal@gmail.com</b> so we can thank you.</p>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+function bindDonate(){
+  document.querySelectorAll('#amts button').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('#amts button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    const a=b.dataset.a;const u='https://www.paypal.com/donate/?business=ccdpnepal%40gmail.com&currency_code=USD'+(a?'&amount='+a:'');
+    $('#ppbtn').href=u;$('#ppamt').textContent=a?'$'+a:'';
+  });
+  document.querySelectorAll('.copy').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(b.dataset.c);toast('Copied to clipboard')}catch(e){toast(b.dataset.c)}});
+}
+
+const nextBand=(cur,list,label)=>{const i=list.indexOf(cur);const a=list[(i+1)%list.length],b=list[(i+2)%list.length];
+  const get=k=>PROJECTS[k]||STORIES[k];
+  return `<div class="next">${[a,b].map(k=>`<a href="#${k}"><img src="${img(get(k).img)}" alt="" loading="lazy"><div><small>${label}</small><h3>${get(k).title} →</h3></div></a>`).join('')}</div>`};
+
+const ctaBand=(t)=>`<section class="pad" style="padding-top:0"><div class="wrap"><div class="cta-band reveal"><h3>${t}</h3><a href="#donate" class="btn btn-gold">Support this work <span class="arrow">→</span></a></div></div></section>`;
+
+/* ============ PAGES ============ */
+function pageHome(){
+  return `
+<section class="film" id="film">
+  <video id="vid" src="video.mp4" poster="img/video-poster.jpg" autoplay muted playsinline preload="auto"></video>
+  <div class="film-ui">
+    <div class="ctrl"><button class="chip" id="snd">🔇 Sound on</button><button class="chip" id="replay">↺ Replay</button></div>
+    <button class="scrollcue" id="skip">Scroll<i></i></button>
+  </div>
+  <div class="progress" id="prog"></div>
+</section>
+
+<section class="hero" id="header">
+  <div class="bg" style="background-image:url(${img('header.jpg')})"></div>
+  <div class="hero-in">
+    <div class="eyebrow reveal">CCDP · Pokhara, Nepal · सृजनशील बालविकास कार्यक्रम</div>
+    <h1 class="reveal" style="margin-top:1.2rem">Creative Children <em>Development</em> Programme</h1>
+    <p class="tag reveal">We find the children others overlook, help them flourish in their own villages, give the most vulnerable a loving home — and grow a farm so that care can last for generations.</p>
+    <div class="plan reveal">
+      <div><small>01</small><b>Identify</b><span>Seeking out under-served children</span></div>
+      <div><small>02</small><b>Support</b><span>Education & help in their own village</span></div>
+      <div><small>03</small><b>Care</b><span>A Children Home for the most vulnerable</span></div>
+      <div><small>04</small><b>Sustain</b><span>A farm to secure the future</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="projects-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow reveal">Our Projects</div><h2 class="section-title reveal">One complete plan, <em>four ways</em> we serve.</h2></div>
+      <p class="lede reveal" style="max-width:420px">From a child’s first school bag to a home and a future — each project meets children exactly where they are.</p>
+    </div>
+    ${projectCards()}
+  </div>
+</section>
+
+<section class="pad stories-bg" id="stories-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow reveal">Stories</div><h2 class="section-title reveal">Lives <em>changed</em>, and changing.</h2></div>
+      <a href="#about" class="btn btn-dark reveal">About CCDP <span class="arrow">→</span></a>
+    </div>
+    ${storyCards()}
+  </div>
+</section>
+${donateSection()}`;
+}
+
+function afterHome(){
+  const v=$('#vid'),snd=$('#snd');
+  const goHeader=()=>$('#header').scrollIntoView({behavior:'smooth'});
+  v.addEventListener('ended',()=>{ if(window.scrollY<window.innerHeight*.5) goHeader(); });
+  v.addEventListener('timeupdate',()=>{ const pr=$('#prog'); if(v.duration&&pr) pr.style.width=(v.currentTime/v.duration*100)+'%'; });
+  snd.onclick=()=>{v.muted=!v.muted;if(!v.muted){v.play().catch(()=>{})}snd.textContent=v.muted?'🔇 Sound on':'🔊 Sound off'};
+  $('#replay').onclick=()=>{v.currentTime=0;v.play().catch(()=>{})};
+  $('#skip').onclick=goHeader;
+  v.play().catch(()=>{});
+  bindDonate();
+}
+
+function pageProject(k){
+  const p=PROJECTS[k];const photos=PHOTOS.filter(x=>x.p===k);
+  const farmVideo = k==='farm' ? `
+  <section class="pad" style="padding-top:0"><div class="wrap">
+    <div style="position:relative;border-radius:22px;overflow:hidden;aspect-ratio:16/8;background:#000" class="reveal">
+      <video id="farmvid" src="video.mp4#t=17.5,30" muted playsinline autoplay preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>
+      <div style="position:absolute;left:2rem;bottom:1.6rem;color:#fff;font-family:var(--serif);font-size:1.5rem;font-style:italic;text-shadow:0 2px 12px rgba(0,0,0,.5)">The farm land in Odahare, from above</div>
+    </div>
+  </div></section>` : '';
+  return `
+<header class="phero"><img src="${img(p.img)}" alt="${p.title}">
+  <div class="in"><div class="crumbs"><a href="#home">Home</a> · <a href="#projects">Our Projects</a> · ${p.n}</div>
+  <h1>${p.title}</h1><p>${p.hero}</p></div></header>
+<section class="pad"><div class="narrow prose">
+  <div class="eyebrow reveal">Project ${p.n}</div>
+  ${p.intro.map((t,i)=>`<p class="reveal ${i==0?'drop':''}">${t}</p>`).join('')}
+</div>
+<div class="wrap"><div class="features">${p.feats.map(f=>`<div class="feature reveal"><div class="ic">${f[0]}</div><h4>${f[1]}</h4><p>${f[2]}</p></div>`).join('')}</div></div>
+</section>
+<section class="bigquote"><div class="wrap reveal"><q>${p.quote[0]}</q><cite>— ${p.quote[1]}</cite></div></section>
+${farmVideo}
+${photos.length>1?`<section class="pad"><div class="wrap"><div class="sec-head"><div><div class="eyebrow reveal">In pictures</div><h2 class="section-title reveal">Moments from <em>${p.title}</em></h2></div></div>${masonry(photos)}</div></section>`:''}
+${ctaBand(k==='farm'?'The farm has just begun — help us plant the future.':'Help us reach one more child.')}
+${nextBand(k,PORDER,'Next project')}`;
+}
+function afterProject(k){
+  bindMasonry(PHOTOS.filter(x=>x.p===k));
+  const fv=$('#farmvid'); if(fv){fv.addEventListener('timeupdate',()=>{if(fv.currentTime>=29.8){fv.currentTime=17.5;fv.play().catch(()=>{})}});fv.play().catch(()=>{})}
+}
+
+function boardGrid(){
+  const e=BOARD.filter(b=>b[3]==='e'),a=BOARD.filter(b=>b[3]==='a');
+  const card=b=>`<div class="member reveal"><div class="ph"><img src="${img('board/'+b[0]+'.jpg')}" alt="${b[1]}" loading="lazy"></div><b>${b[1]}</b><span>${b[2]}</span></div>`;
+  return `<div class="board-group">Executive Committee</div><div class="board">${e.map(card).join('')}</div>
+          <div class="board-group">Advisors</div><div class="board">${a.map(card).join('')}</div>`;
+}
+
+function pageAbout(){
+  return `
+<header class="phero"><img src="${img('children-home-6.jpg')}" alt="Children waving on their way to school">
+ <div class="in"><div class="crumbs"><a href="#home">Home</a> · About Us</div>
+ <h1>Every child, <em>seen.</em></h1><p>Creative Children Development Programme is a Nepali, community-led organisation based in Pokhara, caring for under-served children through one complete plan.</p></div></header>
+
+<section class="pad"><div class="wrap split">
+  <div>
+    <div class="eyebrow reveal">Who we are</div>
+    <h2 class="section-title reveal">A complete plan, <em>from first need to lasting future.</em></h2>
+    <div class="prose">
+      <p class="reveal">CCDP — सृजनशील बालविकास कार्यक्रम — begins by looking closely at the communities around us, searching out children whose needs might otherwise go unnoticed. We believe children are best cared for in their own homes, so wherever possible we support them right where they are: with school materials, financial help for their families, and village schools like the one in Odahare.</p>
+      <p class="reveal">For children who have no home and no family to care for them, our Children Home offers safety, education, play and love. And to make sure this work can continue for generations, we have begun a farm in Odahare that will one day help sustain it all.</p>
+      <p class="reveal">None of this happens alone. CCDP is carried by friends in Nepal and around the world — including EFCDC, Peter’s Project, and many churches and individuals overseas — who give their time, encouragement and support.</p>
+    </div>
+  </div>
+  <img class="reveal" src="${img('odahare-village-school-5.jpg')}" alt="A student at the Odahare village school">
+</div></section>
+
+<section class="pad stories-bg"><div class="wrap">
+  <div class="eyebrow reveal">How we work</div>
+  <h2 class="section-title reveal">Identify · Support · Care · <em>Sustain</em></h2>
+  <div class="features">
+    <div class="feature reveal"><div class="ic">◎</div><h4>Identify</h4><p>We scan our area for children and families in need — especially those others overlook.</p></div>
+    <div class="feature reveal"><div class="ic">✎</div><h4>Support in-village</h4><p>Educational materials, family support and the Odahare Village School keep children learning at home.</p></div>
+    <div class="feature reveal"><div class="ic">⌂</div><h4>Care</h4><p>The most vulnerable find a loving family at the Children Home in Pokhara.</p></div>
+    <div class="feature reveal"><div class="ic">🌱</div><h4>Sustain</h4><p>A newly started farm to fund and secure the work for the future.</p></div>
+  </div>
+</div></section>
+
+<section class="pad"><div class="wrap split">
+  <img class="reveal" src="${img('shankar-portrait.jpg')}" alt="Shankar Panta, founder of CCDP" style="object-position:center 30%">
+  <div>
+    <div class="eyebrow reveal">Our founder</div>
+    <h2 class="section-title reveal">Shankar’s <em>story</em></h2>
+    <div class="prose">
+      <p class="reveal">Shankar Panta grew up in deep poverty. His mother left the family, his father later died, and he could not go to school. When he developed leprosy, even neighbours and relatives turned away from him.</p>
+      <p class="reveal">At INF’s Green Pastures Hospital in Pokhara he received treatment — and much more: care, love, hope, the Gospel, and the chance to learn to read and write. With help from the hospital’s socio-economic service he went to school, passed his SLC, and returned to Green Pastures as a literacy teacher.</p>
+      <p class="reveal">Inspired by a simple line he once read — that a dream shared with others can become fruitful — he began sharing his vision. Together with his wife Bishnu, that dream became CCDP.</p>
+      <blockquote class="reveal">“Being father to many children is a blessing, and I am happy with that.”<cite>Shankar Panta</cite></blockquote>
+      <a href="#story-shankar" class="btn btn-dark reveal">Read Shankar’s full story <span class="arrow">→</span></a>
+    </div>
+  </div>
+</div></section>
+
+<section class="pad stories-bg" id="board"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow reveal">Leadership</div><h2 class="section-title reveal">Our new <em>Board</em></h2></div>
+  <p class="lede reveal" style="max-width:440px">Introduced at our 14th Annual General Assembly in September 2026, the executive committee and advisors guide CCDP’s work with care and accountability.</p></div>
+  ${boardGrid()}
+</div></section>
+${ctaBand('Walk alongside us — become part of the CCDP family.')}`;
+}
+
+function pageGallery(){
+  const cats=[['all','All'],['odahare-school','Village School'],['scholarship','Scholarship'],['children-home','Children Home'],['farm','Farm']];
+  return `
+<header class="phero short"><img src="${img('odahare-village-school-6.jpg')}" alt="Children drawing under a tree">
+ <div class="in"><div class="crumbs"><a href="#home">Home</a> · Gallery</div><h1>Gallery</h1><p>Everyday moments from our village school, scholarship families, the Children Home and the farm.</p></div></header>
+<section class="pad gal-page"><div class="wrap">
+  <div class="filters">${cats.map((c,i)=>`<button data-c="${c[0]}" class="${i?'':'on'}">${c[1]}</button>`).join('')}</div>
+  <div id="galwrap">${masonry(PHOTOS)}</div>
+</div></section>`;
+}
+function afterGallery(){
+  bindMasonry(PHOTOS);
+  document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    const list=b.dataset.c==='all'?PHOTOS:PHOTOS.filter(p=>p.p===b.dataset.c);
+    $('#galwrap').innerHTML=masonry(list);bindMasonry(list);observe();
+  });
+}
+
+function storyShell(k,lead,body){
+  const s=STORIES[k];
+  return `
+<header class="phero"><img src="${img(s.img)}" alt="${s.title}" style="object-position:center ${k==='story-shankar'?'28%':'25%'}">
+ <div class="in"><div class="crumbs"><a href="#home">Home</a> · <a href="#stories">Stories</a></div><h1>${s.title}</h1><p>${lead}</p></div></header>
+<section class="pad"><div class="narrow prose">${body}</div></section>
+${ctaBand('Stories like these begin with someone who cares.')}
+${nextBand(k,Object.keys(STORIES),'Next story')}`;
+}
+
+function pageShankar(){
+  return storyShell('story-shankar','From a childhood of poverty and leprosy to “father” of many — the story behind CCDP.',`
+  <div class="eyebrow reveal">Founder’s story</div>
+  <p class="drop reveal">Shankar Panta knows what it is to go without. As a boy he often did not have enough food to eat each day, nor decent clothes to wear. His mother left the family — Shankar, his younger sister, two older brothers and their father — and later his father died. Poverty kept all of the children out of school.</p>
+  <p class="reveal">Then came leprosy. In his village, people believed it was incurable and contagious. Shankar was shunned by neighbours, even at times by relatives and family. Poor, without parents, unable to read, and ill — “that thing hurt me a lot,” he remembers. “I wanted to go to school and be some valuable person, first of all for myself, and do something in future.”</p>
+  <figure class="reveal port"><img src="${img('shankar-portrait.jpg')}" alt="Shankar Panta"><figcaption>Shankar Panta, founder of CCDP</figcaption></figure>
+  <h3 class="reveal">Green Pastures</h3>
+  <p class="reveal">In the middle of those dark years, Shankar was brought to INF’s Green Pastures Hospital in Pokhara for treatment. There he received far more than medicine: care, love, hope — and, for the first time, the Gospel. He trusted in God and began to pray for the thing he wanted most: a chance to go to school.</p>
+  <p class="reveal">With help from the hospital’s Socio-Economic Service, that prayer was answered. Shankar learned to read and write, studied hard, passed his SLC, and was offered a job back at Green Pastures as a literacy teacher — the same place he himself had first become literate, learning from teachers Ash Bahadur Nepali and Sister Dorothy. Now he taught adult leprosy patients and the children of patients.</p>
+  <blockquote class="reveal">“All the love I got reflected the love of God to me… I wanted to reflect to others from my life what I have got from God and the people of God.”<cite>Shankar Panta</cite></blockquote>
+  <h3 class="reveal">A dream, shared</h3>
+  <p class="reveal">One day, reading a Christian magazine, Shankar came across a line that stayed with him: if somebody has a dream, that dream needs to be shared with others so it can become fruitful. He thought of all the children who might be facing the same poverty and illness he had faced — and he began to share his vision with Nepali and foreign friends alike. That is how the work with children began.</p>
+  <h3 class="reveal">Shankar and Bishnu</h3>
+  <p class="reveal">When Shankar decided to marry, a friend told him about Bishnu, a strong believer who knew Christ well. He prayed for her, went to meet her and asked — and she said yes. After an engagement in Butwal, arranged with church leaders, they were married at Naya Gaun Church, surrounded and blessed by many friends.</p>
+  <figure class="reveal port"><img src="${img('shankar-bishnu.jpg')}" alt="Shankar and Bishnu Panta"><figcaption>Shankar and Bishnu — partners in life and in the work of CCDP</figcaption></figure>
+  <p class="reveal">When Shankar shared his vision for children, Bishnu said yes to that too. Together they shared it with others, and friends in Nepal and abroad began to help — with time, encouragement and support. “Sometimes we find difficulties,” Shankar says, “but our many friends always trust us and help CCDP in many ways. This always gives us strength to continue.”</p>
+  <h3 class="reveal">Father to many</h3>
+  <p class="reveal">Today Shankar is proud to be a father to many wonderful children, each with their own talents and gifts. Through CCDP — and with partners such as EFCDC, Peter’s Project and many overseas churches and individuals — children from needy families can go to school and stay there, even those who had once dropped out.</p>
+  <blockquote class="reveal">“We all are doing something for the underprivileged children, from all over the world, together.”<cite>Shankar Panta</cite></blockquote>
+  <h3 class="reveal">Dreams for tomorrow</h3>
+  <p class="reveal">Shankar’s hopes for the future are practical and big-hearted: to register CCDP’s land and new building in the organisation’s own name; to support many more children through school; to acquire more land in Odahare for income-generating farming that benefits both CCDP and the villagers; to build a six-room children home — and perhaps one day a school — there; and to find ways for CCDP to earn its own income so it can help others.</p>
+  <h3 class="reveal">The verse that carried him</h3>
+  <p class="reveal">“Love is a very powerful thing,” Shankar says. After his mother left and his father died, it was the love of strangers — Nepali and foreign — at Green Pastures that gave him hope. The words that carried him are the ones Jesus called the greatest: love God, and love your neighbour as yourself (Matthew 22:37–40), and do to others what you would have them do to you (Matthew 7:12).</p>
+  <blockquote class="reveal">“Even if nobody loves us and cares for us, we should at least love them.”<cite>Shankar Panta</cite></blockquote>`);
+}
+
+function pageShristhi(){
+  return storyShell('story-shristhi','Steady support through school, and a young woman stepping confidently into her future.',`
+  <div class="eyebrow reveal">A student’s journey</div>
+  <p class="drop reveal">When Shristhi first came to know CCDP, staying in school was far from certain. Her family worked hard, but school fees, books and uniforms were often more than they could manage — and like many girls in her situation, she risked having to leave her studies behind.</p>
+  <p class="reveal">Through CCDP’s Scholarship Programme, Shristhi received the support she needed year after year: school materials at the start of each term, help with fees, and — just as importantly — people who believed in her and checked in on her progress.</p>
+  <blockquote class="reveal">“Children who are given a chance will use their gifts to become better people for the future.”<cite>The CCDP vision</cite></blockquote>
+  <p class="reveal">Today Shristhi wears her school blazer and tie with quiet pride. She is focused, determined and full of plans — a living reminder of why CCDP believes that a little steady support, given at the right time, can change the whole direction of a life.</p>
+  <p class="reveal">Her story is still being written. With your help, many more children like Shristhi can stay in school and step into the future they dream of.</p>`);
+}
+
+function pageAgm(){
+  return storyShell('story-agm','On 13 September 2026, members gathered at the Children Home building in Pokhara for CCDP’s 14th Annual General Assembly.',`
+  <div class="eyebrow reveal">News · 13 September 2026</div>
+  <p class="drop reveal">On Sunday, 13 September 2026 (28 Bhadra 2083), members and friends of CCDP came together for our 14th Annual General Assembly, held at the Children Home building in Dhungesanghu, Pokhara-15.</p>
+  <p class="reveal">The assembly was a chance to look back with gratitude on another year of work among children — in the Odahare village school, through the Scholarship Programme, at the Children Home and on the newly started farm — and to look ahead to the plans and needs of the coming year.</p>
+  <img class="reveal" src="${img('agm-photo-2.jpg')}" alt="Members at the head table during the 14th AGM" style="border-radius:16px;margin:2rem 0">
+  <p class="reveal">The assembly also introduced CCDP’s executive committee and advisors, who will guide the organisation with care, transparency and accountability. We are deeply thankful to every member who gives their time and wisdom to this work.</p>
+  <h3 class="reveal">Meet the Board</h3>
+  </div><div class="wrap" style="margin-top:1rem">${boardGrid()}</div><div class="narrow prose" style="margin-top:3rem">
+  <img class="reveal" src="${img('agm-photo-1.jpg')}" alt="Preparing the AGM banner" style="border-radius:16px;max-height:640px;width:auto;margin:0 auto">
+  <p class="reveal" style="margin-top:2rem">Thank you to everyone who attended and to all our friends in Nepal and abroad who continue to stand with CCDP.</p>`);
+}
+
+/* ============ ROUTER ============ */
+const ROUTES={home:[pageHome,afterHome],about:[pageAbout],gallery:[pageGallery,afterGallery],
+  'story-shankar':[pageShankar],'story-shristhi':[pageShristhi],'story-agm':[pageAgm]};
+PORDER.forEach(k=>ROUTES[k]=[()=>pageProject(k),()=>afterProject(k)]);
+const HOME_ANCHORS={projects:'projects-sec',stories:'stories-sec',donate:'donate-sec',header:'header'};
+let current=null;
+
+function render(){
+  let h=(location.hash||'#home').slice(1)||'home';
+  $('#mobile').classList.remove('open');$('#lb').classList.remove('open');setDropdown(false);
+  if(h==='contact'){ $('#contact').scrollIntoView({behavior:'smooth'}); return; }
+  let anchor=null;
+  if(HOME_ANCHORS[h]){anchor=HOME_ANCHORS[h];h='home'}
+  if(!ROUTES[h]) h='home';
+  if(current!==h){
+    current=h;
+    app.querySelectorAll('video').forEach(v=>{try{v.pause();v.removeAttribute('src');v.load()}catch(e){}});
+    app.innerHTML=ROUTES[h][0]();
+    ROUTES[h][1]&&ROUTES[h][1]();
+    observe();
+    if(!anchor) window.scrollTo({top:0,behavior:'instant'});
+  }
+  document.querySelectorAll('.menu>a[data-r]').forEach(a=>a.classList.toggle('active',a.dataset.r===h&&!anchor));
+  if(anchor) setTimeout(()=>document.getElementById(anchor).scrollIntoView({behavior:'smooth'}),60);
+  onScroll();
+}
+window.addEventListener('hashchange',render);
+
+/* reveal */
+let io;
+function observe(){
+  io&&io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+}
+
+/* nav */
+let lastY=0;
+function onScroll(){
+  const y=window.scrollY,nav=$('#nav');
+  nav.classList.toggle('solid',y>window.innerHeight*.75);
+  nav.classList.toggle('hidden',y>lastY&&y>400);
+  lastY=y;
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+const dd=$('.dd'),ddBtn=$('.dd>button');
+function setDropdown(isOpen){dd.classList.toggle('open',isOpen);ddBtn.setAttribute('aria-expanded',isOpen)}
+ddBtn.onclick=()=>setDropdown(!dd.classList.contains('open'));
+dd.addEventListener('focusout',e=>{if(!dd.contains(e.relatedTarget))setDropdown(false)});
+dd.addEventListener('keydown',e=>{if(e.key==='Escape'&&dd.classList.contains('open')){setDropdown(false);ddBtn.focus()}});
+$('#burger').onclick=()=>$('#mobile').classList.add('open');
+$('#mclose').onclick=()=>$('#mobile').classList.remove('open');
+$('#yr').textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>

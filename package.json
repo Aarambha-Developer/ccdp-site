@@ -1,0 +1,13 @@
+{
+  "name": "ccdp-site",
+  "private": true,
+  "description": "CCDP static website, served by Cloudflare Workers static assets",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.165.0"
+  }
+}
